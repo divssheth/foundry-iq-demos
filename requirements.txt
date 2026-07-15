@@ -1,0 +1,14 @@
+# Azure AI Search SDK (preview - required for MCP server knowledge sources and agentic retrieval)
+azure-search-documents --pre
+
+# Azure AI Projects SDK (Notebook 2 - Agent Integration)
+azure-ai-projects>=2.0.0
+
+# Authentication
+azure-identity
+
+# Environment variable management
+python-dotenv
+
+# HTTP requests (for ARM REST API calls in Notebook 2)
+requests
