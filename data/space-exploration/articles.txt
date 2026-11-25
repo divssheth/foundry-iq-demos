@@ -1,0 +1,263 @@
+# Curated English Wikipedia article titles for the space exploration corpus.
+# One title per line; blank lines and lines starting with '#' are ignored.
+# Titles that no longer resolve are skipped (with a warning) by 00-setup/prepare-space-dataset.ipynb.
+
+# --- Space Race and early spaceflight ---
+Space Race
+Sputnik 1
+Sputnik 2
+Laika
+Explorer 1
+Vostok programme
+Vostok 1
+Vostok 6
+Yuri Gagarin
+Valentina Tereshkova
+Alexei Leonov
+Voskhod 2
+Sergei Korolev
+Wernher von Braun
+Project Mercury
+Mercury-Redstone 3
+Friendship 7
+Alan Shepard
+John Glenn
+Project Gemini
+Gemini 4
+Gemini 8
+Ed White (astronaut)
+
+# --- Lunar exploration ---
+Apollo program
+Apollo 1
+Apollo 8
+Apollo 11
+Apollo 13
+Apollo 17
+Neil Armstrong
+Buzz Aldrin
+Michael Collins (astronaut)
+Jim Lovell
+Gene Cernan
+Saturn V
+Luna programme
+Luna 2
+Luna 9
+Lunokhod 1
+Chang'e 3
+Chang'e 4
+Chang'e 5
+Chandrayaan-1
+Chandrayaan-3
+Artemis program
+Artemis I
+Artemis II
+Space Launch System
+Orion (spacecraft)
+Lunar Gateway
+Moon landing
+
+# --- Space stations ---
+Salyut 1
+Skylab
+Mir
+International Space Station
+Tiangong space station
+Zvezda (ISS module)
+Kibo (ISS module)
+Columbus (ISS module)
+Expedition 1
+Expedition 35
+Chris Hadfield
+Peggy Whitson
+Scott Kelly (astronaut)
+Valeri Polyakov
+
+# --- Space Shuttle era ---
+Space Shuttle
+Space Shuttle program
+Space Shuttle Columbia
+Space Shuttle Challenger
+Space Shuttle Challenger disaster
+Space Shuttle Columbia disaster
+STS-1
+STS-7
+STS-31
+STS-93
+Sally Ride
+Mae Jemison
+Eileen Collins
+Buran (spacecraft)
+
+# --- Russian / Soviet programme ---
+Soyuz (spacecraft)
+Soyuz (rocket family)
+Soyuz 1
+Soyuz 11
+Soyuz T-11
+Soyuz T-15
+Soyuz MS-10
+Progress (spacecraft)
+Proton (rocket family)
+Angara (rocket family)
+Roscosmos
+Baikonur Cosmodrome
+Plesetsk Cosmodrome
+Vostochny Cosmodrome
+
+# --- China ---
+China National Space Administration
+Shenzhou program
+Shenzhou 5
+Shenzhou 9
+Yang Liwei
+Liu Yang (astronaut)
+Long March (rocket family)
+Jiuquan Satellite Launch Center
+Wenchang Space Launch Site
+Tianwen-1
+Zhurong (rover)
+
+# --- India ---
+Indian Space Research Organisation
+Satish Dhawan Space Centre
+Polar Satellite Launch Vehicle
+Mars Orbiter Mission
+Gaganyaan
+Rakesh Sharma
+
+# --- Japan ---
+JAXA
+Tanegashima Space Center
+Hayabusa
+Hayabusa2
+H-IIA
+Koichi Wakata
+
+# --- Europe ---
+European Space Agency
+Guiana Space Centre
+Ariane 5
+Ariane 6
+Rosetta (spacecraft)
+Philae (spacecraft)
+Automated Transfer Vehicle
+BepiColombo
+Jupiter Icy Moons Explorer
+Thomas Pesquet
+Samantha Cristoforetti
+Tim Peake
+
+# --- United States: agency and centers ---
+NASA
+Kennedy Space Center
+Cape Canaveral Space Force Station
+Johnson Space Center
+Jet Propulsion Laboratory
+Marshall Space Flight Center
+Goddard Space Flight Center
+Vandenberg Space Force Base
+
+# --- Mars ---
+Exploration of Mars
+Mars 3
+Viking program
+Viking 1
+Mars Pathfinder
+Sojourner (rover)
+Spirit (rover)
+Opportunity (rover)
+Curiosity (rover)
+Perseverance (rover)
+Ingenuity (helicopter)
+Mars Express
+Mars Reconnaissance Orbiter
+InSight
+Emirates Mars Mission
+ExoMars Trace Gas Orbiter
+Colonization of Mars
+
+# --- Planetary probes ---
+Pioneer 10
+Pioneer 11
+Voyager program
+Voyager 1
+Voyager 2
+Galileo (spacecraft)
+Cassini–Huygens
+Juno (spacecraft)
+New Horizons
+Europa Clipper
+Dawn (spacecraft)
+MESSENGER
+Parker Solar Probe
+OSIRIS-REx
+Double Asteroid Redirection Test
+Venera
+Venera 7
+Magellan (spacecraft)
+
+# --- Space telescopes ---
+Hubble Space Telescope
+James Webb Space Telescope
+Chandra X-ray Observatory
+Spitzer Space Telescope
+Kepler space telescope
+Transiting Exoplanet Survey Satellite
+Gaia (spacecraft)
+Planck (spacecraft)
+Herschel Space Observatory
+Euclid (spacecraft)
+Nancy Grace Roman Space Telescope
+Compton Gamma Ray Observatory
+
+# --- Commercial spaceflight ---
+SpaceX
+Falcon 9
+Falcon Heavy
+SpaceX Starship
+SpaceX Dragon 2
+Crew Dragon Demo-2
+Inspiration4
+Blue Origin
+New Shepard
+New Glenn
+Rocket Lab
+Electron (rocket)
+Virgin Galactic
+Boeing Starliner
+Commercial Crew Program
+Commercial Orbital Transportation Services
+Cygnus (spacecraft)
+Axiom Space
+Starlink
+Elon Musk
+Jeff Bezos
+
+# --- Cross-cutting themes ---
+Space exploration
+Human spaceflight
+Timeline of space exploration
+Space debris
+Kessler syndrome
+Outer Space Treaty
+Space medicine
+Effect of spaceflight on the human body
+Extravehicular activity
+Rocket engine
+Reusable launch system
+Space tourism
+Satellite
+Geostationary orbit
+Low Earth orbit
+Global Positioning System
+Earth observation satellite
+Landsat program
+Astrobiology
+Exoplanet
+Planetary protection
+Interplanetary spaceflight
+Gravity assist
+Ion thruster
+Solar sail
+Asteroid mining

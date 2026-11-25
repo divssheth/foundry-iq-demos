@@ -1,91 +1,106 @@
 # Foundry IQ: End-to-End Agentic Retrieval with Azure AI Search
 
-A demo repo showcasing upcoming **Foundry IQ** features — the managed knowledge layer in Azure AI Search that transforms enterprise content into reusable, permission-aware knowledge bases for agents.
+A demo repo showcasing **Foundry IQ**, the managed knowledge layer in Azure AI Search that turns enterprise content into reusable, permission-aware knowledge bases for agents. It goes from the basics of knowledge bases and agents through **Microsoft Retriever 1**, **topic graphs** and **entity graphs**.
 
-## What You'll Build
+## Learning path
 
-| Notebook | What It Covers |
-|----------|----------------|
-| [foundry-iq-knowledge-layer.ipynb](foundry-iq-knowledge-layer.ipynb) | Create a search index, ingest data, configure two knowledge sources (SearchIndex + Microsoft Learn MCP server), build a knowledge base, and run agentic retrieval queries |
-| [foundry-agent-mcp-integration.ipynb](foundry-agent-mcp-integration.ipynb) | Connect the knowledge base to a Foundry Agent via MCP, create an agent with knowledge retrieval tools, and run multi-turn conversations with citations |
+| # | Notebook | What it covers | Dataset |
+|---|----------|----------------|---------|
+| 1 | [01-basics/01-foundry-iq-knowledge-layer.ipynb](01-basics/01-foundry-iq-knowledge-layer.ipynb) | Search index, two knowledge sources (SearchIndex + Microsoft Learn MCP server), knowledge base, agentic retrieval | NASA Earth at Night + Microsoft Learn |
+| 2 | [01-basics/02-foundry-agent-mcp-integration.ipynb](01-basics/02-foundry-agent-mcp-integration.ipynb) | Connect the knowledge base to a Foundry Agent via MCP; multi-turn conversations with citations | Same as 1 |
+| 0 | [00-setup/prepare-space-dataset.ipynb](00-setup/prepare-space-dataset.ipynb) | **Run once before 3–5.** Fetch ~230 Wikipedia articles, upload to Blob Storage, build an indexer + skillset pipeline that chunks and embeds server-side | Space exploration (Wikipedia) |
+| 3 | [02-knowledge-retrieval/01-microsoft-retriever-1.ipynb](02-knowledge-retrieval/01-microsoft-retriever-1.ipynb) | Microsoft Retriever 1: direct agentic search, a Retriever 1-only knowledge base, `auto` reasoning effort, side-by-side comparison | Space exploration |
+| 4 | [03-graph/01-topic-graph.ipynb](03-graph/01-topic-graph.ipynb) | Why and how topic graphs work; build with the Foundry IQ skills plugin; `none` vs `balanced` vs `diverse` | Space exploration |
+| 5 | [03-graph/02-entity-graph.ipynb](03-graph/02-entity-graph.ipynb) | Why and how entity graphs work; ontology design, graph-enabled Blob knowledge source with ingestion cache, ontology v1 → v2, GQL and knowledge base queries | Space exploration (subset) |
+
+Plus [docs/foundry-iq-skills-guide.md](docs/foundry-iq-skills-guide.md): how to use the Foundry IQ skills plugin, and what you can and can't do without it.
+
+### Why two datasets?
+
+- **Basics (1–2)** deliberately combine two *unrelated* sources, NASA Earth at Night (indexed) and Microsoft Learn (remote MCP), so the activity log clearly shows query planning **routing** subqueries to the right source.
+- **Retriever 1 and graphs (3–5)** share one relationship-rich Wikipedia corpus on **space exploration**, so you can ask the *same* questions with plain search, Retriever 1, a topic graph and an entity graph and compare. It has many **themes** (Space Race, Apollo, space stations, Mars, telescopes, commercial spaceflight) for topic graphs, and many **relationships** (astronaut → mission → launch site → country) for entity graphs.
 
 ## Architecture
 
 ```mermaid
 flowchart TB
-    subgraph KB["Knowledge Base"]
-        direction LR
-        KS1["Knowledge Source 1<br/><b>SearchIndex</b><br/>NASA Earth at Night<br/>documents in Azure AI Search"]
-        KS2["Knowledge Source 2<br/><b>MCP Server (Preview)</b><br/>Microsoft Learn<br/>learn.microsoft.com/api/mcp"]
+    subgraph Basics["01-basics"]
+        KS1["SearchIndex KS<br/>NASA Earth at Night"] & KS2["MCP Server KS<br/>Microsoft Learn"] --> KB1["Knowledge base"] --> Agent["Foundry Agent (MCP)"]
+    end
+    subgraph Space["00-setup → 02 / 03"]
+        Wiki[("Wikipedia")] --> Blob["Blob Storage"] --> Pipe["Indexer + skillset"] --> IDX[("space-exploration index")]
+        IDX --> MR1["Microsoft Retriever 1<br/>agentic search / KB"]
+        IDX --> TG["Topic graph<br/>(built client-side)"]
+        Blob --> EG["Entity graph<br/>(graph-enabled Blob KS + cache)"]
     end
 
-    KS1 & KS2 --> Engine["Agentic Retrieval Engine<br/><i>Query Planning → Parallel Search → Reranking</i>"]
-    Engine --> MCP["MCP Endpoint"]
-    MCP --> Agent["Foundry Agent<br/><i>knowledge_base_retrieve MCP tool</i>"]
-    Agent --> User(("User"))
-
-    style KB fill:#f0f9ff,stroke:#0078d4,color:#000
-    style Engine fill:#fffdf0,stroke:#d4a000,color:#000
-    style Agent fill:#f0fff4,stroke:#28a745,color:#000
+    style Basics fill:#f0f9ff,stroke:#0078d4,color:#000
+    style Space fill:#fffdf0,stroke:#d4a000,color:#000
 ```
 
 ## Prerequisites
 
-### Azure Resources
+### Azure resources
 
-1. **Azure AI Search** — Basic tier or higher, in an [agentic-retrieval-supported region](https://learn.microsoft.com/en-us/azure/search/search-region-support)
-2. **Microsoft Foundry resource** (AI Services endpoint: `services.ai.azure.com`) with:
-   - An LLM deployment (e.g., `gpt-5.4-mini`)
-   - An embedding model deployment (`text-embedding-3-large`)
-3. **Microsoft Foundry project** (required for the agent integration notebook)
+| Resource | Needed by | Notes |
+|---|---|---|
+| **Azure AI Search**, Basic tier or higher | All | Region must support [agentic retrieval](https://learn.microsoft.com/azure/search/search-region-support); notebook 3 (Microsoft Retriever 1) needs **Japan East, North Europe, West Central US or West US 3** |
+| Search **Standard Knowledge Retrieval** plan | 3 | Required for Microsoft Retriever 1 |
+| **Microsoft Foundry resource** (`services.ai.azure.com`) | All | LLM deployment (e.g. `gpt-5.4-mini`) and `text-embedding-3-large` |
+| Chat deployment for graphs (`gpt-5.6-luna` recommended) | 4, 5 | Entity extraction, graph query planning, topic naming. Falls back to `LLM_DEPLOYMENT` |
+| **Microsoft Foundry project** | 2 | Agent integration |
+| **Storage account**: general-purpose v2, **not** ADLS Gen2, with Blob and Table storage | 0, 5 | Keyless (shared-key access can stay disabled). Blob **soft delete on** and **versioning off**: set once with `az storage account blob-service-properties update` (see notebook 0, Step 3) |
+| **GitHub Copilot CLI**, Git, Node.js, Python 3.12+, Azure CLI, Windows x64 or Linux | 4 | Foundry IQ skills plugin; see the [guide](docs/foundry-iq-skills-guide.md) |
 
-### Permissions & Identity
+### Permissions and identity
 
-| Scope | Role | Assign To | Purpose |
+| Scope | Role | Assign to | Purpose |
 |-------|------|-----------|---------|
-| Azure AI Search | Search Service Contributor | Your user / service principal | Create indexes, knowledge sources, knowledge bases |
-| Azure AI Search | Search Index Data Contributor | Your user / service principal | Upload documents |
-| Azure AI Search | Search Index Data Reader | Your user / service principal **and** Foundry project managed identity | Query indexes and knowledge bases |
-| Foundry resource | Cognitive Services User | Azure AI Search managed identity | Allow search service to access LLM and embedding models via AI Services endpoint |
-| Foundry project | Foundry User | Your user / service principal | Create agents and model deployments |
-| Foundry project | Foundry Project Manager | Your user / service principal | Create project connections |
+| Azure AI Search | Search Service Contributor | You | Create indexes, indexers, knowledge sources, knowledge bases |
+| Azure AI Search | Search Index Data Contributor | You | Upload documents |
+| Azure AI Search | Search Index Data Reader | You **and** the Foundry project managed identity | Query indexes and knowledge bases |
+| Foundry resource | Cognitive Services User | Azure AI Search managed identity | Embedding skill, vectorizers, knowledge base models, graph extraction |
+| Foundry resource | Cognitive Services OpenAI User | You | Local LLM calls in notebook 5 (extraction demo) |
+| Foundry project | Foundry User, Foundry Project Manager | You | Agents and project connections (notebook 2) |
+| Storage account | Storage Blob Data Contributor | You | Create containers and upload articles (notebook 0) |
+| Storage account | Storage Account Contributor | You | One-time soft delete / versioning settings (notebook 0, Step 3) |
+| Storage account | Storage Blob Data Contributor, Storage Table Data Contributor | Azure AI Search managed identity | Indexer reads blobs; entity graph reads blobs and writes its ingestion cache |
 
-> **Identity setup**: Enable a **system-assigned managed identity** on your Azure AI Search service, then assign it the **Cognitive Services User** role on your Microsoft Foundry resource. For the agent integration notebook, also assign the **Foundry project's managed identity** the **Search Index Data Reader** role on the Azure AI Search service.
+> **Identity setup:** enable a **system-assigned managed identity** on the search service and give it **Cognitive Services User** on the Foundry resource and the storage roles above. Storage is accessed **without keys**: the notebooks use your Entra identity (`DefaultAzureCredential`), and the search service uses `ResourceId=…` connections with its managed identity. Only `AZURE_STORAGE_RESOURCE_ID` is needed in `.env`.
 
-## Getting Started
+## Getting started
 
-1. **Clone or download** this folder
-
-2. **Create a `.env` file** from the template:
+1. **Clone** this repo
+2. **Create `.env`** from the template and fill in your values:
    ```bash
    cp .env.sample .env
    ```
-   Fill in your Azure resource endpoints and deployment names.
-
-3. **Install dependencies**:
+3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
-
-4. **Authenticate** (if using `DefaultAzureCredential`):
+4. **Sign in** (for `DefaultAzureCredential`):
    ```bash
    az login
    ```
+5. **Run the notebooks** in the order of the learning path. Run `00-setup` once before notebooks 3–5.
 
-5. **Open and run** the notebooks in order, starting with `foundry-iq-knowledge-layer.ipynb`.
+## API versions
 
-## API Version
+Every notebook uses the same SDK: **`azure-search-documents==12.2.0b1`**, which targets the **`2026-11-01-preview`** REST API. That version is required for Microsoft Retriever 1, topic graphs, entity graphs, the ingestion cache and MCP server knowledge sources. The knowledge base MCP endpoint in `01-basics/02` uses the same API version (`SEARCH_API_VERSION`).
 
-These notebooks use the **`2026-05-01-preview`** REST API (via the preview `azure-search-documents` Python SDK). This version is required for:
+## Data and licensing
 
-- MCP server knowledge sources
-- Answer synthesis output mode
-- Configurable retrieval reasoning effort
+The space exploration corpus is fetched from English Wikipedia at run time and cached in `data/space-exploration/cache/` (git-ignored). Wikipedia text is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); every indexed chunk keeps its `source_url` for attribution. The committed files are only the title lists and ontologies.
 
-## Key References
+## Key references
 
-- [Agentic retrieval overview](https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-overview)
-- [What is Foundry IQ?](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/what-is-foundry-iq)
-- [Create a knowledge base](https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-create-knowledge-base)
-- [MCP server knowledge source](https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-mcp-server)
-- [Connect Foundry IQ to Foundry Agent Service](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/foundry-iq-connect)
+- [Agentic retrieval overview](https://learn.microsoft.com/azure/search/agentic-retrieval-overview)
+- [What is Foundry IQ?](https://learn.microsoft.com/azure/ai-foundry/agents/concepts/what-is-foundry-iq)
+- [Use Microsoft Retriever 1](https://learn.microsoft.com/azure/search/agentic-retrieval-how-to-use-microsoft-retriever)
+- [Knowledge graph features overview](https://learn.microsoft.com/azure/search/knowledge-graph-features-overview)
+- [Configure topic graph retrieval](https://learn.microsoft.com/azure/search/agentic-knowledge-source-how-to-topic-graph)
+- [Create and query an entity graph](https://learn.microsoft.com/azure/search/agentic-knowledge-source-how-to-entity-graph)
+- [Install Foundry IQ skills](https://learn.microsoft.com/azure/search/agentic-retrieval-how-to-install-foundry-iq-skills)
+- [MCP server knowledge source](https://learn.microsoft.com/azure/search/agentic-knowledge-source-how-to-mcp-server)
+- [Connect Foundry IQ to Foundry Agent Service](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/foundry-iq-connect)

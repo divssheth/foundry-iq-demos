@@ -1,0 +1,81 @@
+{
+  "@context": {
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "ex": "https://example.com/space-exploration#"
+  },
+  "@graph": [
+    {
+      "@id": "ex:Astronaut",
+      "@type": "owl:Class",
+      "rdfs:comment": "A person who has flown, or trained to fly, in space (astronaut, cosmonaut, taikonaut)."
+    },
+    {
+      "@id": "ex:Mission",
+      "@type": "owl:Class",
+      "rdfs:comment": "A named spaceflight mission or flight, for example Apollo 11, Vostok 1 or Shenzhou 5."
+    },
+    {
+      "@id": "ex:Agency",
+      "@type": "owl:Class",
+      "rdfs:comment": "A space agency or company that operates missions, for example NASA, Roscosmos or SpaceX."
+    },
+    {
+      "@id": "ex:LaunchSite",
+      "@type": "owl:Class",
+      "rdfs:comment": "A spaceport or launch complex, for example Baikonur Cosmodrome or Kennedy Space Center."
+    },
+    {
+      "@id": "ex:Place",
+      "@type": "owl:Class",
+      "rdfs:comment": "A country or geographic region, for example Kazakhstan, Florida or French Guiana."
+    },
+    {
+      "@id": "ex:Spacecraft",
+      "@type": "owl:Class",
+      "rdfs:comment": "A crewed spacecraft or launch vehicle type, for example Soyuz, Crew Dragon or Saturn V."
+    },
+    {
+      "@id": "ex:crewOf",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "ex:Astronaut"},
+      "rdfs:range": {"@id": "ex:Mission"},
+      "rdfs:comment": "The astronaut flew as a crew member on the mission."
+    },
+    {
+      "@id": "ex:operatedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "ex:Mission"},
+      "rdfs:range": {"@id": "ex:Agency"},
+      "rdfs:comment": "The agency or company that operated the mission."
+    },
+    {
+      "@id": "ex:memberOf",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "ex:Astronaut"},
+      "rdfs:range": {"@id": "ex:Agency"},
+      "rdfs:comment": "The agency that selected or employed the astronaut."
+    },
+    {
+      "@id": "ex:launchedFrom",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "ex:Mission"},
+      "rdfs:range": {"@id": "ex:LaunchSite"},
+      "rdfs:comment": "The launch site the mission lifted off from."
+    },
+    {
+      "@id": "ex:locatedIn",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "ex:LaunchSite"},
+      "rdfs:range": {"@id": "ex:Place"},
+      "rdfs:comment": "The country or region where the launch site is located."
+    },
+    {
+      "@id": "ex:usedSpacecraft",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "ex:Mission"},
+      "rdfs:range": {"@id": "ex:Spacecraft"},
+      "rdfs:comment": "The spacecraft or launch vehicle the mission used."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
-# Azure AI Search SDK (preview - required for MCP server knowledge sources and agentic retrieval)
-azure-search-documents --pre
+# Azure AI Search SDK - pinned for every notebook; targets the 2026-11-01-preview REST API
+azure-search-documents==12.2.0b1
 
 # Azure AI Projects SDK (Notebook 2 - Agent Integration)
 azure-ai-projects>=2.0.0
@@ -10,5 +10,15 @@ azure-identity
 # Environment variable management
 python-dotenv
 
-# HTTP requests (for ARM REST API calls in Notebook 2)
+# HTTP requests (ARM calls in Notebook 2, Wikipedia fetch, local LLM demos in 03-graph)
 requests
+
+# Blob upload for the space exploration corpus (00-setup)
+azure-storage-blob
+
+# Progress bars (00-setup)
+tqdm
+
+# Graph building and visualisation (03-graph)
+networkx
+matplotlib

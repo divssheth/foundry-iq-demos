@@ -1,0 +1,72 @@
+# Subset of titles used for the entity graph (03-graph/02-entity-graph.ipynb).
+# Chosen so astronaut -> mission -> launch site -> country chains appear across *different* articles.
+# Graph extraction calls an LLM per chunk, so this list is intentionally small.
+
+# Soviet / Russian
+Yuri Gagarin
+Vostok 1
+Valentina Tereshkova
+Vostok 6
+Alexei Leonov
+Voskhod 2
+Soyuz 11
+Soyuz T-15
+Soyuz MS-10
+Roscosmos
+Baikonur Cosmodrome
+Plesetsk Cosmodrome
+Vostochny Cosmodrome
+
+# United States
+Alan Shepard
+Mercury-Redstone 3
+John Glenn
+Friendship 7
+Neil Armstrong
+Buzz Aldrin
+Michael Collins (astronaut)
+Apollo 11
+Jim Lovell
+Apollo 8
+Apollo 13
+Gene Cernan
+Apollo 17
+Sally Ride
+STS-7
+Eileen Collins
+STS-93
+NASA
+Kennedy Space Center
+Cape Canaveral Space Force Station
+
+# China
+Yang Liwei
+Shenzhou 5
+Liu Yang (astronaut)
+Shenzhou 9
+China National Space Administration
+Jiuquan Satellite Launch Center
+
+# India
+Rakesh Sharma
+Soyuz T-11
+Indian Space Research Organisation
+Satish Dhawan Space Centre
+Chandrayaan-3
+
+# Japan and Europe
+Koichi Wakata
+JAXA
+Tanegashima Space Center
+Thomas Pesquet
+Samantha Cristoforetti
+Tim Peake
+European Space Agency
+Guiana Space Centre
+
+# Commercial and ISS
+Crew Dragon Demo-2
+SpaceX
+Chris Hadfield
+Expedition 35
+International Space Station
