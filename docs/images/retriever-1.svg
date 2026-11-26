@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 600" width="1280" height="600" role="img" aria-labelledby="title desc">
+  <title id="title">Three ways to use Microsoft Retriever 1</title>
+  <desc id="desc">Microsoft Retriever 1 can be used through direct agentic search with QueryType.AGENTIC, through a knowledge base whose only model is Retriever 1 at minimal effort, or through a knowledge base with auto effort that adds an external model. With auto, an initial pass runs first, Retriever 1 runs if that is not enough, and the external model at medium effort runs only if still needed. Requires the Standard Knowledge Retrieval plan and a supported region.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#9AA3B5"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+      .title { font-size: 34px; font-weight: 700; fill: #1F2430; }
+      .subtitle { font-size: 18px; fill: #5B6272; }
+      .h { font-size: 22px; font-weight: 700; fill: #1F2430; }
+      .h2 { font-size: 20px; font-weight: 700; fill: #1F2430; }
+      .section { font-size: 18px; font-weight: 700; fill: #1F2430; }
+      .tag { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
+      .body { font-size: 16px; fill: #5B6272; }
+      .small { font-size: 15px; fill: #5B6272; }
+      .num { font-size: 18px; font-weight: 700; fill: #FFFFFF; }
+      .edge { font-size: 13px; font-weight: 600; fill: #5B6272; }
+      .pill { font-size: 15px; font-weight: 600; }
+      .card { fill: #FFFFFF; stroke-width: 2; }
+      .conn { stroke: #9AA3B5; stroke-width: 2.5; fill: none; }
+      .icon { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- Background panel: keeps the image readable on light and dark themes -->
+  <rect x="0" y="0" width="1280" height="600" rx="28" fill="#F7F8FC"/>
+
+  <text class="title" x="64" y="80">Three ways to use Microsoft Retriever 1</text>
+  <text class="subtitle" x="64" y="114">A retrieval model hosted in Foundry IQ plans queries, so you don't need an external chat model</text>
+
+  <g>
+    <rect class="card" x="64" y="150" width="362" height="220" rx="20" stroke="#C9D8F7"/>
+    <circle cx="104" cy="190" r="18" fill="#3B6FD8"/>
+    <text class="num" x="104" y="196" text-anchor="middle">1</text>
+    <circle cx="378" cy="190" r="24" fill="#E8F0FE"/>
+    <g class="icon" stroke="#3B6FD8"><circle cx="376" cy="188" r="7"/><path d="M381 193 L387 199"/></g>
+    <text class="h" x="88" y="258">Direct agentic search</text>
+    <text class="body" x="88" y="290">QueryType.AGENTIC on any index<tspan x="88" dy="24">query, filters included.</tspan><tspan x="88" dy="24">No knowledge base needed.</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="459" y="150" width="362" height="220" rx="20" stroke="#DCD2F7"/>
+    <circle cx="499" cy="190" r="18" fill="#7B5BD6"/>
+    <text class="num" x="499" y="196" text-anchor="middle">2</text>
+    <circle cx="773" cy="190" r="24" fill="#F0EBFD"/>
+    <g class="icon" stroke="#7B5BD6"><path d="M775 179 L767 192 H773 L771 201 L779 188 H773 Z"/></g>
+    <text class="h" x="483" y="258">Retriever 1-only KB</text>
+    <text class="body" x="483" y="290">models = [Retriever 1]<tspan x="483" dy="24">effort = minimal</tspan><tspan x="483" dy="24">Citations and an activity log.</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="854" y="150" width="362" height="220" rx="20" stroke="#F5DDB0"/>
+    <circle cx="894" cy="190" r="18" fill="#D98E1C"/>
+    <text class="num" x="894" y="196" text-anchor="middle">3</text>
+    <circle cx="1168" cy="190" r="24" fill="#FFF4E0"/>
+    <g class="icon" stroke="#D98E1C"><path d="M1168 181 L1178 186 L1168 191 L1158 186 Z M1158 192 L1168 197 L1178 192"/></g>
+    <text class="h" x="878" y="258">auto effort</text>
+    <text class="body" x="878" y="290">models = [Retriever 1, gpt]<tspan x="878" dy="24">The external model runs only</tspan><tspan x="878" dy="24">when a request needs it.</tspan></text>
+  </g>
+
+  <g>
+  <rect x="64" y="394" width="1152" height="80" rx="20" fill="#FFFFFF" stroke="#E3E6EE" stroke-width="2"/>
+  <text class="section" x="88" y="428" font-size="16px">How auto</text>
+  <text class="small" x="88" y="450">decides</text>
+  <rect x="300" y="414" width="210" height="40" rx="20" fill="#E8F0FE"/>
+  <text class="pill" x="405" y="439" text-anchor="middle" fill="#2A56B5">Initial pass · minimal</text>
+  <path class="conn" d="M514 434 L646 434" marker-end="url(#arrow)"/>
+  <text class="edge" x="580" y="424" text-anchor="middle">not enough</text>
+  <rect x="650" y="414" width="200" height="40" rx="20" fill="#F0EBFD"/>
+  <text class="pill" x="750" y="439" text-anchor="middle" fill="#5D3FB8">Microsoft Retriever 1</text>
+  <path class="conn" d="M854 434 L986 434" marker-end="url(#arrow)"/>
+  <text class="edge" x="920" y="424" text-anchor="middle">still not enough</text>
+  <rect x="990" y="414" width="216" height="40" rx="20" fill="#FFF4E0"/>
+  <text class="pill" x="1098" y="439" text-anchor="middle" fill="#A76508">External model · medium</text>
+  </g>
+
+  <g>
+    <rect x="64" y="498" width="1152" height="56" rx="16" fill="#FDECEC" stroke="#D9534F" stroke-width="2" stroke-dasharray="7 6"/>
+    <g class="icon" stroke="#D9534F"><circle cx="94" cy="526" r="10"/><path d="M94 522 V527 M94 531 V531.5"/></g>
+    <text class="body" x="120" y="532"><tspan font-weight="700" fill="#1F2430">Requirements:</tspan> Standard Knowledge Retrieval plan, in Japan East, North Europe, West Central US or West US 3</text>
+  </g>
+</svg>

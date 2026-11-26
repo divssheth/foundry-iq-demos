@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 610" width="1280" height="610" role="img" aria-labelledby="title desc">
+  <title id="title">A Foundry agent that answers from your knowledge base</title>
+  <desc id="desc">A user question goes to a Foundry agent, which calls the knowledge_base_retrieve MCP tool through a project connection. The knowledge base plans, searches NASA Earth at Night and Microsoft Learn, and reranks. The agent writes an answer with citations. Follow-up turns chain previous_response_id. The project connection authenticates with the project's managed identity.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#9AA3B5"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+      .title { font-size: 34px; font-weight: 700; fill: #1F2430; }
+      .subtitle { font-size: 18px; fill: #5B6272; }
+      .h { font-size: 22px; font-weight: 700; fill: #1F2430; }
+      .h2 { font-size: 20px; font-weight: 700; fill: #1F2430; }
+      .section { font-size: 18px; font-weight: 700; fill: #1F2430; }
+      .tag { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
+      .body { font-size: 16px; fill: #5B6272; }
+      .small { font-size: 15px; fill: #5B6272; }
+      .num { font-size: 18px; font-weight: 700; fill: #FFFFFF; }
+      .edge { font-size: 13px; font-weight: 600; fill: #5B6272; }
+      .pill { font-size: 15px; font-weight: 600; }
+      .card { fill: #FFFFFF; stroke-width: 2; }
+      .conn { stroke: #9AA3B5; stroke-width: 2.5; fill: none; }
+      .icon { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- Background panel: keeps the image readable on light and dark themes -->
+  <rect x="0" y="0" width="1280" height="610" rx="28" fill="#F7F8FC"/>
+
+  <text class="title" x="64" y="80">A Foundry agent that answers from your knowledge base</text>
+  <text class="subtitle" x="64" y="114">The knowledge base is exposed as an MCP tool; the agent calls it and cites what comes back</text>
+
+  <g>
+    <rect class="card" x="64" y="150" width="211" height="220" rx="20" stroke="#DCD2F7"/>
+    <circle cx="104" cy="190" r="18" fill="#7B5BD6"/>
+    <text class="num" x="104" y="196" text-anchor="middle">1</text>
+    <circle cx="227" cy="190" r="24" fill="#F0EBFD"/>
+    <g class="icon" stroke="#7B5BD6"><circle cx="227" cy="185" r="5"/><path d="M218 200 A9 8 0 0 1 236 200"/></g>
+    <text class="h" x="88" y="258">Question</text>
+    <text class="small" x="88" y="290">multi-turn: follow-<tspan x="88" dy="24">ups chain the</tspan><tspan x="88" dy="24">previous response</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="299" y="150" width="211" height="220" rx="20" stroke="#C3E8D5"/>
+    <circle cx="339" cy="190" r="18" fill="#2E9E6A"/>
+    <text class="num" x="339" y="196" text-anchor="middle">2</text>
+    <circle cx="462" cy="190" r="24" fill="#E6F6EE"/>
+    <g class="icon" stroke="#2E9E6A"><rect x="452" y="183" width="20" height="15" rx="4"/><path d="M462 183 V179"/><circle cx="462" cy="178" r="1.5"/><path d="M458 190 V191 M466 190 V191"/></g>
+    <text class="h" x="323" y="258">Foundry agent</text>
+    <text class="small" x="323" y="290">gpt-5.4-mini, told<tspan x="323" dy="24">to answer only from</tspan><tspan x="323" dy="24">the KB tool</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="534" y="150" width="211" height="220" rx="20" stroke="#DCD2F7"/>
+    <circle cx="574" cy="190" r="18" fill="#7B5BD6"/>
+    <text class="num" x="574" y="196" text-anchor="middle">3</text>
+    <circle cx="697" cy="190" r="24" fill="#F0EBFD"/>
+    <g class="icon" stroke="#7B5BD6"><path d="M692 179 V185 M702 179 V185 M697 193 V201"/><rect x="689" y="185" width="16" height="9" rx="3"/></g>
+    <text class="h" x="558" y="258">MCP tool</text>
+    <text class="small" x="558" y="290">knowledge_base_<tspan x="558" dy="24">retrieve, via a</tspan><tspan x="558" dy="24">project connection</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="769" y="150" width="211" height="220" rx="20" stroke="#F5DDB0"/>
+    <circle cx="809" cy="190" r="18" fill="#D98E1C"/>
+    <text class="num" x="809" y="196" text-anchor="middle">4</text>
+    <circle cx="932" cy="190" r="24" fill="#FFF4E0"/>
+    <g class="icon" stroke="#D98E1C"><path d="M932 181 L942 186 L932 191 L922 186 Z M922 192 L932 197 L942 192"/></g>
+    <text class="h" x="793" y="258">Knowledge base</text>
+    <text class="small" x="793" y="290">plans, searches<tspan x="793" dy="24">both sources,</tspan><tspan x="793" dy="24">reranks</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="1004" y="150" width="211" height="220" rx="20" stroke="#C3E8D5"/>
+    <circle cx="1044" cy="190" r="18" fill="#2E9E6A"/>
+    <text class="num" x="1044" y="196" text-anchor="middle">5</text>
+    <circle cx="1167" cy="190" r="24" fill="#E6F6EE"/>
+    <g class="icon" stroke="#2E9E6A"><circle cx="1167" cy="190" r="10"/><path d="M1162 190 L1166 194 L1172 186"/></g>
+    <text class="h" x="1028" y="258">Answer</text>
+    <text class="small" x="1028" y="290">written by the<tspan x="1028" dy="24">agent, with a list</tspan><tspan x="1028" dy="24">of cited sources</tspan></text>
+  </g>
+
+  <path class="conn" d="M277 260 L295 260" marker-end="url(#arrow)"/>
+  <path class="conn" d="M512 260 L530 260" marker-end="url(#arrow)"/>
+  <path class="conn" d="M747 260 L765 260" marker-end="url(#arrow)"/>
+  <path class="conn" d="M982 260 L1000 260" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="64" y="394" width="1152" height="56" rx="16" fill="#FFF4E0" stroke="#D98E1C" stroke-width="2" stroke-dasharray="7 6"/>
+    <g class="icon" stroke="#D98E1C"><circle cx="94" cy="422" r="10"/><path d="M94 418 V423 M94 427 V427.5"/></g>
+    <text class="body" x="120" y="428"><tspan font-weight="700" fill="#1F2430">Keyless end to end:</tspan> the project connection uses the project's managed identity, which needs Search Index Data Reader</text>
+  </g>
+
+  <g>
+  <rect x="64" y="474" width="1152" height="80" rx="20" fill="#FFFFFF" stroke="#E3E6EE" stroke-width="2"/>
+  <text class="section" x="88" y="508" font-size="16px">Behind the</text>
+  <text class="small" x="88" y="530">knowledge base</text>
+  <rect x="300" y="494" width="330" height="40" rx="20" fill="#E8F0FE"/>
+  <text class="pill" x="465" y="519" text-anchor="middle" fill="#2A56B5">NASA Earth at Night · search index</text>
+  <rect x="660" y="494" width="300" height="40" rx="20" fill="#F0EBFD"/>
+  <text class="pill" x="810" y="519" text-anchor="middle" fill="#5D3FB8">Microsoft Learn · MCP server</text>
+  </g>
+</svg>

@@ -22,21 +22,7 @@ Plus [docs/foundry-iq-skills-guide.md](docs/foundry-iq-skills-guide.md): how to 
 
 ## Architecture
 
-```mermaid
-flowchart TB
-    subgraph Basics["01-basics"]
-        KS1["SearchIndex KS<br/>NASA Earth at Night"] & KS2["MCP Server KS<br/>Microsoft Learn"] --> KB1["Knowledge base"] --> Agent["Foundry Agent (MCP)"]
-    end
-    subgraph Space["00-setup → 02 / 03"]
-        Wiki[("Wikipedia")] --> Blob["Blob Storage"] --> Pipe["Indexer + skillset"] --> IDX[("space-exploration index")]
-        IDX --> MR1["Microsoft Retriever 1<br/>agentic search / KB"]
-        IDX --> TG["Topic graph<br/>(built client-side)"]
-        Blob --> EG["Entity graph<br/>(graph-enabled Blob KS + cache)"]
-    end
-
-    style Basics fill:#f0f9ff,stroke:#0078d4,color:#000
-    style Space fill:#fffdf0,stroke:#d4a000,color:#000
-```
+![Foundry IQ learning path: 01-basics covers the knowledge layer and agent via MCP; the space exploration track covers dataset preparation, Microsoft Retriever 1, topic graph and entity graph](docs/images/learning-path.svg)
 
 ## Prerequisites
 

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 620" width="1280" height="620" role="img" aria-labelledby="title desc">
+  <title id="title">One knowledge base, two very different sources</title>
+  <desc id="desc">An indexed source (NASA Earth at Night search index) and a remote source (Microsoft Learn MCP server) feed one knowledge base. Agentic retrieval plans the question with an LLM, searches each source in parallel, then reranks and returns a cited answer. The datasets are unrelated on purpose so the activity log shows which source answered each subquery.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#9AA3B5"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+      .title { font-size: 34px; font-weight: 700; fill: #1F2430; }
+      .subtitle { font-size: 18px; fill: #5B6272; }
+      .h { font-size: 22px; font-weight: 700; fill: #1F2430; }
+      .h2 { font-size: 20px; font-weight: 700; fill: #1F2430; }
+      .section { font-size: 18px; font-weight: 700; fill: #1F2430; }
+      .tag { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
+      .body { font-size: 16px; fill: #5B6272; }
+      .small { font-size: 15px; fill: #5B6272; }
+      .num { font-size: 18px; font-weight: 700; fill: #FFFFFF; }
+      .edge { font-size: 13px; font-weight: 600; fill: #5B6272; }
+      .pill { font-size: 15px; font-weight: 600; }
+      .card { fill: #FFFFFF; stroke-width: 2; }
+      .conn { stroke: #9AA3B5; stroke-width: 2.5; fill: none; }
+      .icon { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- Background panel: keeps the image readable on light and dark themes -->
+  <rect x="0" y="0" width="1280" height="620" rx="28" fill="#F7F8FC"/>
+
+  <text class="title" x="64" y="80">One knowledge base, two very different sources</text>
+  <text class="subtitle" x="64" y="114">Agentic retrieval plans the question, searches each source and merges the results</text>
+
+  <g>
+    <rect class="card" x="64" y="150" width="330" height="160" rx="20" stroke="#C9D8F7"/>
+    <text class="tag" x="88" y="196" fill="#3B6FD8">INDEXED SOURCE</text>
+    <circle cx="346" cy="190" r="24" fill="#E8F0FE"/>
+    <g class="icon" stroke="#3B6FD8"><ellipse cx="346" cy="183" rx="9" ry="3.5"/><path d="M337 183 V197 A9 3.5 0 0 0 355 197 V183 M337 190 A9 3.5 0 0 0 355 190"/></g>
+    <text class="h" x="88" y="238">NASA Earth at Night</text>
+    <text class="body" x="88" y="266">search index, 194 pages<tspan x="88" dy="24">semantic + vector search</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="64" y="336" width="330" height="160" rx="20" stroke="#DCD2F7"/>
+    <text class="tag" x="88" y="382" fill="#7B5BD6">REMOTE SOURCE</text>
+    <circle cx="346" cy="376" r="24" fill="#F0EBFD"/>
+    <g class="icon" stroke="#7B5BD6"><path d="M341 365 V371 M351 365 V371 M346 379 V387"/><rect x="338" y="371" width="16" height="9" rx="3"/></g>
+    <text class="h" x="88" y="424">Microsoft Learn</text>
+    <text class="body" x="88" y="452">MCP server, queried live<tspan x="88" dy="24">microsoft_docs_search tool</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="450" y="150" width="300" height="346" rx="20" stroke="#F5DDB0"/>
+    <text class="tag" x="474" y="196" fill="#D98E1C">ORCHESTRATES</text>
+    <circle cx="702" cy="190" r="24" fill="#FFF4E0"/>
+    <g class="icon" stroke="#D98E1C"><path d="M702 181 L712 186 L702 191 L692 186 Z M692 192 L702 197 L712 192"/></g>
+    <text class="h" x="474" y="258">Knowledge base</text>
+    <text class="body" x="474" y="290">foundry-iq-demo-kb<tspan x="474" dy="24"></tspan><tspan x="474" dy="24">Retrieval instructions</tspan><tspan x="474" dy="24">tell the planner which</tspan><tspan x="474" dy="24">source suits which</tspan><tspan x="474" dy="24">kind of question</tspan></text>
+  </g>
+
+  <path class="conn" d="M396 230 L446 270" marker-end="url(#arrow)"/>
+
+  <path class="conn" d="M396 416 L446 376" marker-end="url(#arrow)"/>
+
+  <path class="conn" d="M752 323 L802 323" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect class="card" x="806" y="150" width="410" height="346" rx="20" stroke="#C3E8D5"/>
+    <text class="tag" x="830" y="196" fill="#2E9E6A">AGENTIC RETRIEVAL</text>
+    <circle cx="1168" cy="190" r="24" fill="#E6F6EE"/>
+    <g class="icon" stroke="#2E9E6A"><path d="M1164 183 H1178 M1164 190 H1178 M1164 197 H1178"/><circle cx="1159" cy="183" r="1.5"/><circle cx="1159" cy="190" r="1.5"/><circle cx="1159" cy="197" r="1.5"/></g>
+    <circle cx="846" cy="265" r="16" fill="#2E9E6A"/>
+    <text class="num" x="846" y="271" text-anchor="middle" font-size="16px">1</text>
+    <text class="h2" x="876" y="263">Plan</text>
+    <text class="small" x="876" y="285">An LLM splits the question into subqueries</text>
+    <circle cx="846" cy="350" r="16" fill="#2E9E6A"/>
+    <text class="num" x="846" y="356" text-anchor="middle" font-size="16px">2</text>
+    <text class="h2" x="876" y="348">Search in parallel</text>
+    <text class="small" x="876" y="370">Each subquery goes to the right source</text>
+    <circle cx="846" cy="435" r="16" fill="#2E9E6A"/>
+    <text class="num" x="846" y="441" text-anchor="middle" font-size="16px">3</text>
+    <text class="h2" x="876" y="433">Rerank + answer</text>
+    <text class="small" x="876" y="455">A cited answer with [ref_id:n] markers</text>
+  </g>
+
+  <g>
+    <rect x="64" y="520" width="1152" height="56" rx="16" fill="#E8F0FE" stroke="#3B6FD8" stroke-width="2" stroke-dasharray="7 6"/>
+    <g class="icon" stroke="#3B6FD8"><circle cx="94" cy="548" r="10"/><path d="M94 544 V549 M94 553 V553.5"/></g>
+    <text class="body" x="120" y="554"><tspan font-weight="700" fill="#1F2430">Two unrelated datasets on purpose:</tspan> the activity log shows exactly which source answered each subquery</text>
+  </g>
+</svg>

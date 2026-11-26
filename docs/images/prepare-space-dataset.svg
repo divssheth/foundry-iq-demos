@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 650" width="1280" height="650" role="img" aria-labelledby="title desc">
+  <title id="title">Prepare the space exploration dataset</title>
+  <desc id="desc">Five steps: fetch about 230 Wikipedia articles and cache them, upload them to two Blob containers, build a data source, indexer and skillset, chunk and embed server-side, and write the space-exploration index with one document per chunk. The search service reads storage keylessly with its managed identity. The index is used by the Retriever 1 and topic graph notebooks; the entity graph reads the smaller space-entity container.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#9AA3B5"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+      .title { font-size: 34px; font-weight: 700; fill: #1F2430; }
+      .subtitle { font-size: 18px; fill: #5B6272; }
+      .h { font-size: 22px; font-weight: 700; fill: #1F2430; }
+      .h2 { font-size: 20px; font-weight: 700; fill: #1F2430; }
+      .section { font-size: 18px; font-weight: 700; fill: #1F2430; }
+      .tag { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
+      .body { font-size: 16px; fill: #5B6272; }
+      .small { font-size: 15px; fill: #5B6272; }
+      .num { font-size: 18px; font-weight: 700; fill: #FFFFFF; }
+      .edge { font-size: 13px; font-weight: 600; fill: #5B6272; }
+      .pill { font-size: 15px; font-weight: 600; }
+      .card { fill: #FFFFFF; stroke-width: 2; }
+      .conn { stroke: #9AA3B5; stroke-width: 2.5; fill: none; }
+      .icon { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- Background panel: keeps the image readable on light and dark themes -->
+  <rect x="0" y="0" width="1280" height="650" rx="28" fill="#F7F8FC"/>
+
+  <text class="title" x="64" y="80">Prepare the space exploration dataset</text>
+  <text class="subtitle" x="64" y="114">Run once: one Wikipedia corpus, chunked and embedded server-side, shared by every later notebook</text>
+
+  <g>
+    <rect class="card" x="64" y="150" width="211" height="220" rx="20" stroke="#C9D8F7"/>
+    <circle cx="104" cy="190" r="18" fill="#3B6FD8"/>
+    <text class="num" x="104" y="196" text-anchor="middle">1</text>
+    <circle cx="227" cy="190" r="24" fill="#E8F0FE"/>
+    <g class="icon" stroke="#3B6FD8"><rect x="219" y="179" width="16" height="22" rx="3"/><path d="M223 186 H231 M223 191 H231 M223 196 H228"/></g>
+    <text class="h" x="88" y="258">Fetch</text>
+    <text class="small" x="88" y="290">~230 Wikipedia<tspan x="88" dy="24">articles, cached</tspan><tspan x="88" dy="24">locally</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="299" y="150" width="211" height="220" rx="20" stroke="#C9D8F7"/>
+    <circle cx="339" cy="190" r="18" fill="#3B6FD8"/>
+    <text class="num" x="339" y="196" text-anchor="middle">2</text>
+    <circle cx="462" cy="190" r="24" fill="#E8F0FE"/>
+    <g class="icon" stroke="#3B6FD8"><path d="M462 196 V181 M456 187 L462 181 L468 187 M452 195 V200 H472 V195"/></g>
+    <text class="h" x="323" y="258">Upload</text>
+    <text class="small" x="323" y="290">space-full: all<tspan x="323" dy="24">space-entity: ~60,</tspan><tspan x="323" dy="24">truncated</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="534" y="150" width="211" height="220" rx="20" stroke="#F5DDB0"/>
+    <circle cx="574" cy="190" r="18" fill="#D98E1C"/>
+    <text class="num" x="574" y="196" text-anchor="middle">3</text>
+    <circle cx="697" cy="190" r="24" fill="#FFF4E0"/>
+    <g class="icon" stroke="#D98E1C"><circle cx="697" cy="190" r="4"/><path d="M697 179 V183 M697 197 V201 M686 190 H690 M704 190 H708 M689 182 L692 185 M702 195 L705 198 M705 182 L702 185 M692 195 L689 198"/></g>
+    <text class="h" x="558" y="258">Pipeline</text>
+    <text class="small" x="558" y="290">data source →<tspan x="558" dy="24">indexer → skillset</tspan><tspan x="558" dy="24">you control it all</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="769" y="150" width="211" height="220" rx="20" stroke="#F5DDB0"/>
+    <circle cx="809" cy="190" r="18" fill="#D98E1C"/>
+    <text class="num" x="809" y="196" text-anchor="middle">4</text>
+    <circle cx="932" cy="190" r="24" fill="#FFF4E0"/>
+    <g class="icon" stroke="#D98E1C"><circle cx="926" cy="196" r="3.5"/><circle cx="938" cy="196" r="3.5"/><path d="M928 193 L939 180 M936 193 L925 180"/></g>
+    <text class="h" x="793" y="258">Chunk + embed</text>
+    <text class="small" x="793" y="290">2,000-char chunks,<tspan x="793" dy="24">embedded by the</tspan><tspan x="793" dy="24">service, not locally</tspan></text>
+  </g>
+
+  <g>
+    <rect class="card" x="1004" y="150" width="211" height="220" rx="20" stroke="#C3E8D5"/>
+    <circle cx="1044" cy="190" r="18" fill="#2E9E6A"/>
+    <text class="num" x="1044" y="196" text-anchor="middle">5</text>
+    <circle cx="1167" cy="190" r="24" fill="#E6F6EE"/>
+    <g class="icon" stroke="#2E9E6A"><ellipse cx="1167" cy="183" rx="9" ry="3.5"/><path d="M1158 183 V197 A9 3.5 0 0 0 1176 197 V183 M1158 190 A9 3.5 0 0 0 1176 190"/></g>
+    <text class="h" x="1028" y="258">Index</text>
+    <text class="small" x="1028" y="290">space-exploration:<tspan x="1028" dy="24">one document per</tspan><tspan x="1028" dy="24">chunk, 3,072-dim</tspan></text>
+  </g>
+
+  <path class="conn" d="M277 260 L295 260" marker-end="url(#arrow)"/>
+  <path class="conn" d="M512 260 L530 260" marker-end="url(#arrow)"/>
+  <path class="conn" d="M747 260 L765 260" marker-end="url(#arrow)"/>
+  <path class="conn" d="M982 260 L1000 260" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="64" y="394" width="1152" height="56" rx="16" fill="#FFF4E0" stroke="#D98E1C" stroke-width="2" stroke-dasharray="7 6"/>
+    <g class="icon" stroke="#D98E1C"><circle cx="94" cy="422" r="10"/><path d="M94 418 V423 M94 427 V427.5"/></g>
+    <text class="body" x="120" y="428"><tspan font-weight="700" fill="#1F2430">Keyless:</tspan> the search service reads Blob storage with its managed identity (ResourceId= connection); shared keys stay off</text>
+  </g>
+
+  <text class="section" x="64" y="490">Used by</text>
+
+  <g>
+    <rect class="card" x="64" y="506" width="362" height="96" rx="20" stroke="#C9D8F7"/>
+    <circle cx="112" cy="554" r="26" fill="#E8F0FE"/>
+    <g class="icon" stroke="#3B6FD8"><path d="M114 543 L106 556 H112 L110 565 L118 552 H112 Z"/></g>
+    <text class="h2" x="160" y="550">Microsoft Retriever 1</text>
+    <text class="small" x="160" y="578">02-knowledge-retrieval</text>
+  </g>
+
+  <g>
+    <rect class="card" x="459" y="506" width="362" height="96" rx="20" stroke="#DCD2F7"/>
+    <circle cx="507" cy="554" r="26" fill="#F0EBFD"/>
+    <g class="icon" stroke="#7B5BD6"><circle cx="501" cy="549" r="4"/><circle cx="513" cy="549" r="4"/><circle cx="507" cy="560" r="4"/><path d="M505 549 H509 M503 553 L505 557 M511 553 L509 557"/></g>
+    <text class="h2" x="555" y="550">Topic graph</text>
+    <text class="small" x="555" y="578">03-graph/01: reads the index vectors</text>
+  </g>
+
+  <g>
+    <rect class="card" x="854" y="506" width="362" height="96" rx="20" stroke="#C3E8D5"/>
+    <circle cx="902" cy="554" r="26" fill="#E6F6EE"/>
+    <g class="icon" stroke="#2E9E6A"><path d="M893 548 L910 545 M893 548 L904 563 M910 545 L904 563 M895 562 L904 563"/><circle cx="893" cy="548" r="3" fill="#2E9E6A"/><circle cx="910" cy="545" r="3" fill="#2E9E6A"/><circle cx="904" cy="563" r="3" fill="#2E9E6A"/><circle cx="895" cy="562" r="3" fill="#2E9E6A"/></g>
+    <text class="h2" x="950" y="550">Entity graph</text>
+    <text class="small" x="950" y="578">03-graph/02: reads space-entity</text>
+  </g>
+</svg>
