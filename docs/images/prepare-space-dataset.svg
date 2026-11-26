@@ -98,7 +98,7 @@
     <circle cx="112" cy="554" r="26" fill="#E8F0FE"/>
     <g class="icon" stroke="#3B6FD8"><path d="M114 543 L106 556 H112 L110 565 L118 552 H112 Z"/></g>
     <text class="h2" x="160" y="550">Microsoft Retriever 1</text>
-    <text class="small" x="160" y="578">02-knowledge-retrieval</text>
+    <text class="small" x="160" y="578">queries the index directly</text>
   </g>
 
   <g>
@@ -106,7 +106,7 @@
     <circle cx="507" cy="554" r="26" fill="#F0EBFD"/>
     <g class="icon" stroke="#7B5BD6"><circle cx="501" cy="549" r="4"/><circle cx="513" cy="549" r="4"/><circle cx="507" cy="560" r="4"/><path d="M505 549 H509 M503 553 L505 557 M511 553 L509 557"/></g>
     <text class="h2" x="555" y="550">Topic graph</text>
-    <text class="small" x="555" y="578">03-graph/01: reads the index vectors</text>
+    <text class="small" x="555" y="578">reads the index vectors</text>
   </g>
 
   <g>
@@ -114,6 +114,6 @@
     <circle cx="902" cy="554" r="26" fill="#E6F6EE"/>
     <g class="icon" stroke="#2E9E6A"><path d="M893 548 L910 545 M893 548 L904 563 M910 545 L904 563 M895 562 L904 563"/><circle cx="893" cy="548" r="3" fill="#2E9E6A"/><circle cx="910" cy="545" r="3" fill="#2E9E6A"/><circle cx="904" cy="563" r="3" fill="#2E9E6A"/><circle cx="895" cy="562" r="3" fill="#2E9E6A"/></g>
     <text class="h2" x="950" y="550">Entity graph</text>
-    <text class="small" x="950" y="578">03-graph/02: reads space-entity</text>
+    <text class="small" x="950" y="578">reads space-entity</text>
   </g>
 </svg>

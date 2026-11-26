@@ -2,41 +2,68 @@
 
 A demo repo showcasing **Foundry IQ**, the managed knowledge layer in Azure AI Search that turns enterprise content into reusable, permission-aware knowledge bases for agents. It goes from the basics of knowledge bases and agents through **Microsoft Retriever 1**, **topic graphs** and **entity graphs**.
 
-## Learning path
+![Foundry IQ learning path: the getting started track covers the knowledge layer and agent via MCP; the advanced retrieval track covers dataset preparation, Microsoft Retriever 1, topic graph and entity graph; the security track covers sensitivity labels](docs/images/learning-path.svg)
 
-| # | Notebook | What it covers | Dataset |
-|---|----------|----------------|---------|
-| 1 | [01-basics/01-foundry-iq-knowledge-layer.ipynb](01-basics/01-foundry-iq-knowledge-layer.ipynb) | Search index, two knowledge sources (SearchIndex + Microsoft Learn MCP server), knowledge base, agentic retrieval | NASA Earth at Night + Microsoft Learn |
-| 2 | [01-basics/02-foundry-agent-mcp-integration.ipynb](01-basics/02-foundry-agent-mcp-integration.ipynb) | Connect the knowledge base to a Foundry Agent via MCP; multi-turn conversations with citations | Same as 1 |
-| 0 | [00-setup/prepare-space-dataset.ipynb](00-setup/prepare-space-dataset.ipynb) | **Run once before 3–5.** Fetch ~230 Wikipedia articles, upload to Blob Storage, build an indexer + skillset pipeline that chunks and embeds server-side | Space exploration (Wikipedia) |
-| 3 | [02-knowledge-retrieval/01-microsoft-retriever-1.ipynb](02-knowledge-retrieval/01-microsoft-retriever-1.ipynb) | Microsoft Retriever 1: direct agentic search, a Retriever 1-only knowledge base, `auto` reasoning effort, side-by-side comparison | Space exploration |
-| 4 | [03-graph/01-topic-graph.ipynb](03-graph/01-topic-graph.ipynb) | Why and how topic graphs work; build with the Foundry IQ skills plugin; `none` vs `balanced` vs `diverse` | Space exploration |
-| 5 | [03-graph/02-entity-graph.ipynb](03-graph/02-entity-graph.ipynb) | Why and how entity graphs work; ontology design, graph-enabled Blob knowledge source with ingestion cache, ontology v1 → v2, GQL and knowledge base queries | Space exploration (subset) |
+## Tracks at a glance
 
-Plus [docs/foundry-iq-skills-guide.md](docs/foundry-iq-skills-guide.md): how to use the Foundry IQ skills plugin, and what you can and can't do without it.
+| Track | Folder | What you learn | Dataset |
+|---|---|---|---|
+| **Getting started** | [getting-started/](getting-started/) | Knowledge sources, knowledge bases, agentic retrieval, Foundry Agent integration via MCP | NASA Earth at Night + Microsoft Learn |
+| **Advanced retrieval** | [advanced-retrieval/](advanced-retrieval/) | Microsoft Retriever 1, topic graphs, entity graphs | Wikipedia space exploration corpus |
+| **Security** | [security/](security/) | Microsoft Purview sensitivity labels, enforced at query time | Sample Word documents |
 
-### Why two datasets?
+Start with **Getting started**. The other two tracks are independent of each other. Each track's notebooks are meant to be run in the order listed below.
 
-- **Basics (1–2)** deliberately combine two *unrelated* sources, NASA Earth at Night (indexed) and Microsoft Learn (remote MCP), so the activity log clearly shows query planning **routing** subqueries to the right source.
-- **Retriever 1 and graphs (3–5)** share one relationship-rich Wikipedia corpus on **space exploration**, so you can ask the *same* questions with plain search, Retriever 1, a topic graph and an entity graph and compare. It has many **themes** (Space Race, Apollo, space stations, Mars, telescopes, commercial spaceflight) for topic graphs, and many **relationships** (astronaut → mission → launch site → country) for entity graphs.
+### Getting started
 
-## Architecture
+| Order | Notebook | What it covers |
+|---|---|---|
+| 1 | [knowledge-layer.ipynb](getting-started/knowledge-layer.ipynb) | Search index, two knowledge sources (SearchIndex + Microsoft Learn MCP server), knowledge base, agentic retrieval |
+| 2 | [agent-mcp-integration.ipynb](getting-started/agent-mcp-integration.ipynb) | Connect the knowledge base to a Foundry Agent via MCP; multi-turn conversations with citations |
 
-![Foundry IQ learning path: 01-basics covers the knowledge layer and agent via MCP; the space exploration track covers dataset preparation, Microsoft Retriever 1, topic graph and entity graph](docs/images/learning-path.svg)
+This track deliberately combines two *unrelated* sources, NASA Earth at Night (indexed) and Microsoft Learn (remote MCP), so the activity log clearly shows query planning **routing** subqueries to the right source.
+
+### Advanced retrieval
+
+| Order | Notebook | What it covers |
+|---|---|---|
+| 1 | [prepare-dataset.ipynb](advanced-retrieval/prepare-dataset.ipynb) | **Run once first.** Fetch ~230 Wikipedia articles, upload to Blob Storage, build an indexer + skillset pipeline that chunks and embeds server-side |
+| 2 | [microsoft-retriever-1.ipynb](advanced-retrieval/microsoft-retriever-1.ipynb) | Direct agentic search, a Retriever 1-only knowledge base, `auto` reasoning effort, side-by-side comparison |
+| 3 | [topic-graph.ipynb](advanced-retrieval/topic-graph.ipynb) | Why and how topic graphs work; build with the Foundry IQ skills plugin (**manual step in GitHub Copilot CLI**); `none` vs `balanced` vs `diverse` |
+| 4 | [entity-graph.ipynb](advanced-retrieval/entity-graph.ipynb) | Why and how entity graphs work; ontology design, graph-enabled Blob knowledge source with ingestion cache, ontology v1 → v2, GQL and knowledge base queries |
+
+> ### ⚠️ To do before you run this track
+> 1. **Run [prepare-dataset.ipynb](advanced-retrieval/prepare-dataset.ipynb) once.** Every other notebook in this track reads the `space-exploration` index it creates.
+> 2. **For [topic-graph.ipynb](advanced-retrieval/topic-graph.ipynb), install GitHub Copilot CLI and the Foundry IQ skills plugin first.** Step 4 of that notebook isn't a code cell: you build the topic graph by pasting two prompts into Copilot CLI and approving each plan. Steps 5–6 only produce results after that. The notebook walks you through it with a checklist.
+> 3. **On WSL**, make sure `node`, `npm` and `az` are the *Linux* installs (`which node npm az` must not show `/mnt/c/...`) and install `libicu-dev`. Otherwise Copilot CLI or the plugin's Azure MCP server won't start. See [the guide](docs/foundry-iq-skills-guide.md#troubleshooting).
+
+All four notebooks share one relationship-rich Wikipedia corpus on **space exploration**, so you can ask the *same* questions with plain search, Retriever 1, a topic graph and an entity graph and compare. It has many **themes** (Space Race, Apollo, space stations, Mars, telescopes, commercial spaceflight) for topic graphs, and many **relationships** (astronaut → mission → launch site → country) for entity graphs. After `prepare-dataset`, notebooks 2–4 can be run in any order.
+
+See also [docs/foundry-iq-skills-guide.md](docs/foundry-iq-skills-guide.md): how to use the Foundry IQ skills plugin, and what you can and can't do without it.
+
+### Security
+
+| Notebook | What it covers |
+|---|---|
+| [sensitivity-labels.ipynb](security/sensitivity-labels.ipynb) | Index Microsoft Purview-labelled documents and enforce label-based access at query time |
+
+This notebook is self-contained: it has its own prerequisites (Microsoft Purview label policies, labels applied to the sample files in Word) and its own `.env` variables, described inside the notebook.
 
 ## Prerequisites
+
+The tables below cover the **Getting started** and **Advanced retrieval** tracks. The **Security** track lists its own prerequisites in the notebook.
 
 ### Azure resources
 
 | Resource | Needed by | Notes |
 |---|---|---|
-| **Azure AI Search**, Basic tier or higher | All | Region must support [agentic retrieval](https://learn.microsoft.com/azure/search/search-region-support); notebook 3 (Microsoft Retriever 1) needs **Japan East, North Europe, West Central US or West US 3** |
-| Search **Standard Knowledge Retrieval** plan | 3 | Required for Microsoft Retriever 1 |
+| **Azure AI Search**, Basic tier or higher | All | Region must support [agentic retrieval](https://learn.microsoft.com/azure/search/search-region-support); `microsoft-retriever-1` needs **Japan East, North Europe, West Central US or West US 3** |
+| Search **Standard Knowledge Retrieval** plan | `microsoft-retriever-1` | Required for Microsoft Retriever 1 |
 | **Microsoft Foundry resource** (`services.ai.azure.com`) | All | LLM deployment (e.g. `gpt-5.4-mini`) and `text-embedding-3-large` |
-| Chat deployment for graphs (`gpt-5.6-luna` recommended) | 4, 5 | Entity extraction, graph query planning, topic naming. Falls back to `LLM_DEPLOYMENT` |
-| **Microsoft Foundry project** | 2 | Agent integration |
-| **Storage account**: general-purpose v2, **not** ADLS Gen2, with Blob and Table storage | 0, 5 | Keyless (shared-key access can stay disabled). Blob **soft delete on** and **versioning off**: set once with `az storage account blob-service-properties update` (see notebook 0, Step 3) |
-| **GitHub Copilot CLI**, Git, Node.js, Python 3.12+, Azure CLI, Windows x64 or Linux | 4 | Foundry IQ skills plugin; see the [guide](docs/foundry-iq-skills-guide.md) |
+| Chat deployment for graphs (`gpt-5.6-luna` recommended) | `topic-graph`, `entity-graph` | Entity extraction, graph query planning, topic naming. Falls back to `LLM_DEPLOYMENT` |
+| **Microsoft Foundry project** | `agent-mcp-integration` | Agent integration |
+| **Storage account**: general-purpose v2, **not** ADLS Gen2, with Blob and Table storage | `prepare-dataset`, `entity-graph` | Keyless (shared-key access can stay disabled). Blob **soft delete on** and **versioning off**: set once with `az storage account blob-service-properties update` (see `prepare-dataset`, Step 3) |
+| **GitHub Copilot CLI**, Git, Node.js, Python 3.12–3.14, Azure CLI, Windows x64 or Linux x64/ARM64 | `topic-graph` | Foundry IQ skills plugin; see the [guide](docs/foundry-iq-skills-guide.md). On WSL use the Linux Node.js and Azure CLI, plus `libicu-dev` |
 
 ### Permissions and identity
 
@@ -46,10 +73,10 @@ Plus [docs/foundry-iq-skills-guide.md](docs/foundry-iq-skills-guide.md): how to 
 | Azure AI Search | Search Index Data Contributor | You | Upload documents |
 | Azure AI Search | Search Index Data Reader | You **and** the Foundry project managed identity | Query indexes and knowledge bases |
 | Foundry resource | Cognitive Services User | Azure AI Search managed identity | Embedding skill, vectorizers, knowledge base models, graph extraction |
-| Foundry resource | Cognitive Services OpenAI User | You | Local LLM calls in notebook 5 (extraction demo) |
-| Foundry project | Foundry User, Foundry Project Manager | You | Agents and project connections (notebook 2) |
-| Storage account | Storage Blob Data Contributor | You | Create containers and upload articles (notebook 0) |
-| Storage account | Storage Account Contributor | You | One-time soft delete / versioning settings (notebook 0, Step 3) |
+| Foundry resource | Cognitive Services OpenAI User | You | Local LLM calls in `entity-graph` (extraction demo) |
+| Foundry project | Foundry User, Foundry Project Manager | You | Agents and project connections (`agent-mcp-integration`) |
+| Storage account | Storage Blob Data Contributor | You | Create containers and upload articles (`prepare-dataset`) |
+| Storage account | Storage Account Contributor | You | One-time soft delete / versioning settings (`prepare-dataset`, Step 3) |
 | Storage account | Storage Blob Data Contributor, Storage Table Data Contributor | Azure AI Search managed identity | Indexer reads blobs; entity graph reads blobs and writes its ingestion cache |
 
 > **Identity setup:** enable a **system-assigned managed identity** on the search service and give it **Cognitive Services User** on the Foundry resource and the storage roles above. Storage is accessed **without keys**: the notebooks use your Entra identity (`DefaultAzureCredential`), and the search service uses `ResourceId=…` connections with its managed identity. Only `AZURE_STORAGE_RESOURCE_ID` is needed in `.env`.
@@ -69,11 +96,11 @@ Plus [docs/foundry-iq-skills-guide.md](docs/foundry-iq-skills-guide.md): how to 
    ```bash
    az login
    ```
-5. **Run the notebooks** in the order of the learning path. Run `00-setup` once before notebooks 3–5.
+5. **Run the notebooks** track by track, in the order listed above. In **Advanced retrieval**, run `prepare-dataset` once before the other notebooks, and complete the manual Copilot CLI step in `topic-graph` (Step 4) before its Steps 5–6.
 
 ## API versions
 
-Every notebook uses the same SDK: **`azure-search-documents==12.2.0b1`**, which targets the **`2026-11-01-preview`** REST API. That version is required for Microsoft Retriever 1, topic graphs, entity graphs, the ingestion cache and MCP server knowledge sources. The knowledge base MCP endpoint in `01-basics/02` uses the same API version (`SEARCH_API_VERSION`).
+The **Getting started** and **Advanced retrieval** notebooks use the same SDK: **`azure-search-documents==12.2.0b1`**, which targets the **`2026-11-01-preview`** REST API. That version is required for Microsoft Retriever 1, topic graphs, entity graphs, the ingestion cache and MCP server knowledge sources. The knowledge base MCP endpoint in `agent-mcp-integration` uses the same API version (`SEARCH_API_VERSION`). The **Security** notebook targets `2026-05-01-preview`; see the notebook for details.
 
 ## Data and licensing
 

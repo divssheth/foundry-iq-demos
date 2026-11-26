@@ -10,10 +10,10 @@ This guide explains how to use it and how each step maps to what the notebooks i
 
 | Capability | Without the plugin | With the plugin |
 |---|---|---|
-| **Entity graph**: build | ✅ Fully supported by the REST API and SDK (graph-enabled Blob knowledge source). See [03-graph/02-entity-graph.ipynb](../03-graph/02-entity-graph.ipynb) | Guided provisioning, readiness checks, build, and a local graph viewer |
+| **Entity graph**: build | ✅ Fully supported by the REST API and SDK (graph-enabled Blob knowledge source). See [advanced-retrieval/entity-graph.ipynb](../advanced-retrieval/entity-graph.ipynb) | Guided provisioning, readiness checks, build, and a local graph viewer |
 | **Entity graph**: query | ✅ Knowledge base (natural language → GQL) or direct GQL on `search.graph` | Guided multi-hop questions with sources |
 | **Ontology**: author | ✅ Hand-written JSON-LD (see `data/space-exploration/ontology.v*.json`) | Drafts, refines, reviews, diffs and validates ontologies (including OWL files) |
-| **Topic graph**: build | ⚠️ **No server-side builder exists**, and the topic index contract isn't publicly documented | ✅ **The supported builder** (`topic-graph-build`, a native executable). See [03-graph/01-topic-graph.ipynb](../03-graph/01-topic-graph.ipynb) |
+| **Topic graph**: build | ⚠️ **No server-side builder exists**, and the topic index contract isn't publicly documented | ✅ **The supported builder** (`topic-graph-build`, a native executable). See [advanced-retrieval/topic-graph.ipynb](../advanced-retrieval/topic-graph.ipynb) |
 | **Topic graph**: enable for retrieval | ⚠️ Requires the undocumented `topicGraphProfile` wiring | ✅ `plan-retrieval` → `configure-retrieval` → `verify-retrieval` |
 | **Topic graph**: query | ✅ `topicGraph: none / balanced / diverse` on the knowledge source or per request | Side-by-side on/off comparisons |
 
@@ -58,7 +58,7 @@ If the wrong Python is picked up, set `FOUNDRY_IQ_PYTHON` to an absolute path to
 
 ## Workflow: topic graph
 
-Starting point: a content index whose vector field is **stored, retrievable and uses a cosine or dotProduct HNSW profile**. [00-setup/prepare-space-dataset.ipynb](../00-setup/prepare-space-dataset.ipynb) creates exactly that.
+Starting point: a content index whose vector field is **stored, retrievable and uses a cosine or dotProduct HNSW profile**. [advanced-retrieval/prepare-dataset.ipynb](../advanced-retrieval/prepare-dataset.ipynb) creates exactly that.
 
 | Step | What to ask Copilot | Underlying command | What happens |
 |---|---|---|---|
@@ -71,6 +71,8 @@ Starting point: a content index whose vector field is **stored, retrievable and 
 
 Notes:
 
+- Steps 2–4 create a **new topic index** (named like `fiq-<index>-<id>-topics-<id>`) and leave the content index alone. Step 5 is what changes the content index: it adds a topic graph profile (named like `fiq-<index>-<id>-retrieval-<id>`) to its vector field
+- The topic index stores **subject → predicate → object** rows (`HasRootTopic`, `HasSubTopic`, `HasCentroidVector`, `prop:title`, `prop:description`, `prop:level`, …), not one document per topic. On the ~4,000-chunk space corpus, a build produced 170 topics (39 root, 131 sub-topics) in about 1,200 rows
 - Leaf topics hold at most 100 chunks. Raise `--model-call-cap` if the build stops with `MODEL_CALL_BUDGET_EXHAUSTED`; the build resumes where it stopped
 - "Publish" in the plugin is **local** (for browsing in the viewer) and doesn't enable retrieval; step 5 does
 - After re-ingesting content or building a new generation, repeat step 5
@@ -85,7 +87,7 @@ Notes:
 | Query | *"Which astronauts launched from sites in Kazakhstan? Show sources."* | Natural-language multi-hop questions with provenance |
 | Explore | *"Open the Knowledge Graph Playground."* | Local, read-only browser viewer (`node "<installed-plugin>/graph/apps-host/launch.mjs" --config …`) |
 
-The notebook [03-graph/02-entity-graph.ipynb](../03-graph/02-entity-graph.ipynb) does the same with the `azure-search-documents` SDK, including an **ingestion cache** so the ontology can be changed later (v1 → v2).
+The notebook [advanced-retrieval/entity-graph.ipynb](../advanced-retrieval/entity-graph.ipynb) does the same with the `azure-search-documents` SDK, including an **ingestion cache** so the ontology can be changed later (v1 → v2).
 
 ## Quick-start demo
 
@@ -106,8 +108,11 @@ The skill runs a preflight and guides you through prerequisites, resource select
 | Symptom | Fix |
 |---|---|
 | `/plugin` commands fail | Run them inside Copilot CLI (not PowerShell or bash); check that Git is installed |
+| WSL: `copilot` keeps asking *"Install GitHub Copilot CLI?"* | WSL is using the Windows `npm` from `/mnt/c/...`. Install Linux Node.js (for example with `nvm install --lts`), then `npm install -g @github/copilot` |
+| `Failed to connect to MCP server "azure"` with a .NET stack trace | The Azure MCP server needs ICU. On Ubuntu/WSL run `sudo apt install -y libicu-dev`, then `/exit` and restart `copilot` |
+| WSL: Azure CLI calls fail or use the wrong sign-in | `which az` shows the Windows CLI. Install the Linux one (`curl -sL https://aka.ms/InstallAzureCLIDeb \| sudo bash`) and run `az login` again |
 | Python discovery picks the wrong interpreter | Set `FOUNDRY_IQ_PYTHON` and rerun setup |
-| Topic build stops with `SOURCE_VECTORS_NOT_RETRIEVABLE` / `NOT_STORED` / `NATIVE_SOURCE_INCOMPATIBLE` | The content index's vector field must be stored, retrievable, and cosine/dotProduct HNSW. Recreate it (notebook 00 does this) |
+| Topic build stops with `SOURCE_VECTORS_NOT_RETRIEVABLE` / `NOT_STORED` / `NATIVE_SOURCE_INCOMPATIBLE` | The content index's vector field must be stored, retrievable, and cosine/dotProduct HNSW. Recreate it (`advanced-retrieval/prepare-dataset.ipynb` does this) |
 | Free-tier or key-only Search service rejected | Graph workflows need a paid tier and Entra authentication |
 
 ## References

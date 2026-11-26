@@ -1,7 +1,7 @@
 # Azure AI Search SDK - pinned for every notebook; targets the 2026-11-01-preview REST API
 azure-search-documents==12.2.0b1
 
-# Azure AI Projects SDK (Notebook 2 - Agent Integration)
+# Azure AI Projects SDK (getting-started/agent-mcp-integration)
 azure-ai-projects>=2.0.0
 
 # Authentication
@@ -10,15 +10,15 @@ azure-identity
 # Environment variable management
 python-dotenv
 
-# HTTP requests (ARM calls in Notebook 2, Wikipedia fetch, local LLM demos in 03-graph)
+# HTTP requests (ARM calls in agent-mcp-integration, Wikipedia fetch, local LLM demos in advanced-retrieval)
 requests
 
-# Blob upload for the space exploration corpus (00-setup)
+# Blob upload for the space exploration corpus (prepare-dataset)
 azure-storage-blob
 
-# Progress bars (00-setup)
+# Progress bars (prepare-dataset)
 tqdm
 
-# Graph building and visualisation (03-graph)
+# Graph building and visualisation (topic-graph, entity-graph)
 networkx
 matplotlib

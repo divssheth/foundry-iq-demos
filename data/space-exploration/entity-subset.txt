@@ -1,4 +1,4 @@
-# Subset of titles used for the entity graph (03-graph/02-entity-graph.ipynb).
+# Subset of titles used for the entity graph (advanced-retrieval/entity-graph.ipynb).
 # Chosen so astronaut -> mission -> launch site -> country chains appear across *different* articles.
 # Graph extraction calls an LLM per chunk, so this list is intentionally small.
 

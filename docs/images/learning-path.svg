@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 600" width="1280" height="600" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800" role="img" aria-labelledby="title desc">
   <title id="title">Foundry IQ learning path</title>
-  <desc id="desc">Two tracks. Basics, with NASA Earth at Night and Microsoft Learn: 1 knowledge layer, 2 agent via MCP. Space exploration on Wikipedia: 0 prepare the dataset, 3 Microsoft Retriever 1, 4 topic graph, 5 entity graph.</desc>
+  <desc id="desc">Three tracks. Getting started, with NASA Earth at Night and Microsoft Learn: knowledge layer, then agent via MCP. Advanced retrieval, on a shared Wikipedia space exploration corpus: prepare the dataset, then Microsoft Retriever 1, topic graph and entity graph. Security: sensitivity labels with Microsoft Purview.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 Z" fill="#9AA3B5"/>
@@ -10,14 +10,10 @@
       .title { font-size: 34px; font-weight: 700; fill: #1F2430; }
       .subtitle { font-size: 18px; fill: #5B6272; }
       .h { font-size: 22px; font-weight: 700; fill: #1F2430; }
-      .h2 { font-size: 20px; font-weight: 700; fill: #1F2430; }
       .section { font-size: 18px; font-weight: 700; fill: #1F2430; }
-      .tag { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
+      .folder { font-size: 15px; font-weight: 600; fill: #5B6272; }
       .body { font-size: 16px; fill: #5B6272; }
-      .small { font-size: 15px; fill: #5B6272; }
       .num { font-size: 18px; font-weight: 700; fill: #FFFFFF; }
-      .edge { font-size: 13px; font-weight: 600; fill: #5B6272; }
-      .pill { font-size: 15px; font-weight: 600; }
       .card { fill: #FFFFFF; stroke-width: 2; }
       .conn { stroke: #9AA3B5; stroke-width: 2.5; fill: none; }
       .icon { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
@@ -25,78 +21,96 @@
   </defs>
 
   <!-- Background panel: keeps the image readable on light and dark themes -->
-  <rect x="0" y="0" width="1280" height="600" rx="28" fill="#F7F8FC"/>
+  <rect x="0" y="0" width="1280" height="800" rx="28" fill="#F7F8FC"/>
 
   <text class="title" x="64" y="80">Foundry IQ learning path</text>
-  <text class="subtitle" x="64" y="114">From knowledge-base basics to Microsoft Retriever 1, topic graphs and entity graphs</text>
+  <text class="subtitle" x="64" y="114">Three tracks: knowledge-base basics, advanced retrieval with graphs, and security</text>
 
-  <text class="section" x="64" y="164">01-basics · NASA Earth at Night + Microsoft Learn</text>
+  <!-- Track 1: getting-started -->
+  <text class="section" x="64" y="164">Getting started</text>
+  <text class="folder" x="224" y="164">getting-started/ · NASA Earth at Night + Microsoft Learn</text>
 
   <g>
-    <rect class="card" x="64" y="180" width="560" height="150" rx="20" stroke="#C9D8F7"/>
+    <rect class="card" x="64" y="180" width="560" height="140" rx="20" stroke="#C9D8F7"/>
     <circle cx="104" cy="220" r="18" fill="#3B6FD8"/>
     <text class="num" x="104" y="226" text-anchor="middle">1</text>
     <circle cx="576" cy="220" r="24" fill="#E8F0FE"/>
     <g class="icon" stroke="#3B6FD8"><path d="M576 211 L586 216 L576 221 L566 216 Z M566 222 L576 227 L586 222"/></g>
-    <text class="h" x="88" y="268">Knowledge layer</text>
-    <text class="body" x="88" y="296">index + MCP knowledge sources, one knowledge base</text>
+    <text class="h" x="88" y="266">Knowledge layer</text>
+    <text class="body" x="88" y="294">index + MCP knowledge sources, one knowledge base</text>
   </g>
 
   <g>
-    <rect class="card" x="656" y="180" width="560" height="150" rx="20" stroke="#C3E8D5"/>
+    <rect class="card" x="656" y="180" width="560" height="140" rx="20" stroke="#C3E8D5"/>
     <circle cx="696" cy="220" r="18" fill="#2E9E6A"/>
     <text class="num" x="696" y="226" text-anchor="middle">2</text>
     <circle cx="1168" cy="220" r="24" fill="#E6F6EE"/>
     <g class="icon" stroke="#2E9E6A"><rect x="1158" y="213" width="20" height="15" rx="4"/><path d="M1168 213 V209"/><circle cx="1168" cy="208" r="1.5"/><path d="M1164 220 V221 M1172 220 V221"/></g>
-    <text class="h" x="680" y="268">Agent via MCP</text>
-    <text class="body" x="680" y="296">a Foundry agent that answers with citations</text>
+    <text class="h" x="680" y="266">Agent via MCP</text>
+    <text class="body" x="680" y="294">a Foundry agent that answers with citations</text>
   </g>
 
-  <path class="conn" d="M626 255 L652 255" marker-end="url(#arrow)"/>
+  <path class="conn" d="M626 250 L652 250" marker-end="url(#arrow)"/>
 
-  <text class="section" x="64" y="378">Space exploration · Wikipedia</text>
-
-  <g>
-    <rect class="card" x="64" y="394" width="264" height="170" rx="20" stroke="#F5DDB0"/>
-    <circle cx="104" cy="434" r="18" fill="#D98E1C"/>
-    <text class="num" x="104" y="440" text-anchor="middle">0</text>
-    <circle cx="280" cy="434" r="24" fill="#FFF4E0"/>
-    <g class="icon" stroke="#D98E1C"><path d="M280 440 V425 M274 431 L280 425 L286 431 M270 439 V444 H290 V439"/></g>
-    <text class="h" x="88" y="482">Prepare data</text>
-    <text class="body" x="88" y="510">run once: blob,<tspan x="88" dy="24">pipeline, index</tspan></text>
-  </g>
+  <!-- Track 2: advanced-retrieval -->
+  <text class="section" x="64" y="368">Advanced retrieval</text>
+  <text class="folder" x="256" y="368">advanced-retrieval/ · Wikipedia space exploration corpus</text>
 
   <g>
-    <rect class="card" x="360" y="394" width="264" height="170" rx="20" stroke="#DCD2F7"/>
-    <circle cx="400" cy="434" r="18" fill="#7B5BD6"/>
-    <text class="num" x="400" y="440" text-anchor="middle">3</text>
-    <circle cx="576" cy="434" r="24" fill="#F0EBFD"/>
-    <g class="icon" stroke="#7B5BD6"><path d="M578 423 L570 436 H576 L574 445 L582 432 H576 Z"/></g>
-    <text class="h" x="384" y="482">Retriever 1</text>
-    <text class="body" x="384" y="510">planning hosted<tspan x="384" dy="24">in Foundry IQ</tspan></text>
+    <rect class="card" x="64" y="384" width="264" height="160" rx="20" stroke="#F5DDB0"/>
+    <circle cx="104" cy="424" r="18" fill="#D98E1C"/>
+    <text class="num" x="104" y="430" text-anchor="middle">1</text>
+    <circle cx="280" cy="424" r="24" fill="#FFF4E0"/>
+    <g class="icon" stroke="#D98E1C"><path d="M280 430 V415 M274 421 L280 415 L286 421 M270 429 V434 H290 V429"/></g>
+    <text class="h" x="88" y="472">Prepare dataset</text>
+    <text class="body" x="88" y="500">run once: blob,<tspan x="88" dy="24">pipeline, index</tspan></text>
   </g>
 
   <g>
-    <rect class="card" x="656" y="394" width="264" height="170" rx="20" stroke="#C9D8F7"/>
-    <circle cx="696" cy="434" r="18" fill="#3B6FD8"/>
-    <text class="num" x="696" y="440" text-anchor="middle">4</text>
-    <circle cx="872" cy="434" r="24" fill="#E8F0FE"/>
-    <g class="icon" stroke="#3B6FD8"><circle cx="866" cy="429" r="4"/><circle cx="878" cy="429" r="4"/><circle cx="872" cy="440" r="4"/><path d="M870 429 H874 M868 433 L870 437 M876 433 L874 437"/></g>
-    <text class="h" x="680" y="482">Topic graph</text>
-    <text class="body" x="680" y="510">themes across<tspan x="680" dy="24">the collection</tspan></text>
+    <rect class="card" x="360" y="384" width="264" height="160" rx="20" stroke="#DCD2F7"/>
+    <circle cx="400" cy="424" r="18" fill="#7B5BD6"/>
+    <text class="num" x="400" y="430" text-anchor="middle">2</text>
+    <circle cx="576" cy="424" r="24" fill="#F0EBFD"/>
+    <g class="icon" stroke="#7B5BD6"><path d="M578 413 L570 426 H576 L574 435 L582 422 H576 Z"/></g>
+    <text class="h" x="384" y="472">Retriever 1</text>
+    <text class="body" x="384" y="500">planning hosted<tspan x="384" dy="24">in Foundry IQ</tspan></text>
   </g>
 
   <g>
-    <rect class="card" x="952" y="394" width="264" height="170" rx="20" stroke="#C3E8D5"/>
-    <circle cx="992" cy="434" r="18" fill="#2E9E6A"/>
-    <text class="num" x="992" y="440" text-anchor="middle">5</text>
-    <circle cx="1168" cy="434" r="24" fill="#E6F6EE"/>
-    <g class="icon" stroke="#2E9E6A"><path d="M1159 428 L1176 425 M1159 428 L1170 443 M1176 425 L1170 443 M1161 442 L1170 443"/><circle cx="1159" cy="428" r="3" fill="#2E9E6A"/><circle cx="1176" cy="425" r="3" fill="#2E9E6A"/><circle cx="1170" cy="443" r="3" fill="#2E9E6A"/><circle cx="1161" cy="442" r="3" fill="#2E9E6A"/></g>
-    <text class="h" x="976" y="482">Entity graph</text>
-    <text class="body" x="976" y="510">follow relationships<tspan x="976" dy="24">across articles</tspan></text>
+    <rect class="card" x="656" y="384" width="264" height="160" rx="20" stroke="#C9D8F7"/>
+    <circle cx="696" cy="424" r="18" fill="#3B6FD8"/>
+    <text class="num" x="696" y="430" text-anchor="middle">3</text>
+    <circle cx="872" cy="424" r="24" fill="#E8F0FE"/>
+    <g class="icon" stroke="#3B6FD8"><circle cx="866" cy="419" r="4"/><circle cx="878" cy="419" r="4"/><circle cx="872" cy="430" r="4"/><path d="M870 419 H874 M868 423 L870 427 M876 423 L874 427"/></g>
+    <text class="h" x="680" y="472">Topic graph</text>
+    <text class="body" x="680" y="500">themes across<tspan x="680" dy="24">the collection</tspan></text>
   </g>
 
-  <path class="conn" d="M330 479 L356 479" marker-end="url(#arrow)"/>
-  <path class="conn" d="M626 479 L652 479" marker-end="url(#arrow)"/>
-  <path class="conn" d="M922 479 L948 479" marker-end="url(#arrow)"/>
+  <g>
+    <rect class="card" x="952" y="384" width="264" height="160" rx="20" stroke="#C3E8D5"/>
+    <circle cx="992" cy="424" r="18" fill="#2E9E6A"/>
+    <text class="num" x="992" y="430" text-anchor="middle">4</text>
+    <circle cx="1168" cy="424" r="24" fill="#E6F6EE"/>
+    <g class="icon" stroke="#2E9E6A"><path d="M1159 418 L1176 415 M1159 418 L1170 433 M1176 415 L1170 433 M1161 432 L1170 433"/><circle cx="1159" cy="418" r="3" fill="#2E9E6A"/><circle cx="1176" cy="415" r="3" fill="#2E9E6A"/><circle cx="1170" cy="433" r="3" fill="#2E9E6A"/><circle cx="1161" cy="432" r="3" fill="#2E9E6A"/></g>
+    <text class="h" x="976" y="472">Entity graph</text>
+    <text class="body" x="976" y="500">follow relationships<tspan x="976" dy="24">across articles</tspan></text>
+  </g>
+
+  <path class="conn" d="M330 464 L356 464" marker-end="url(#arrow)"/>
+  <path class="conn" d="M626 464 L652 464" marker-end="url(#arrow)"/>
+  <path class="conn" d="M922 464 L948 464" marker-end="url(#arrow)"/>
+
+  <!-- Track 3: security -->
+  <text class="section" x="64" y="592">Security</text>
+  <text class="folder" x="164" y="592">security/ · sample Word documents</text>
+
+  <g>
+    <rect class="card" x="64" y="608" width="1152" height="128" rx="20" stroke="#F5C6C4"/>
+    <circle cx="104" cy="648" r="18" fill="#D9534F"/>
+    <text class="num" x="104" y="654" text-anchor="middle">1</text>
+    <circle cx="1168" cy="648" r="24" fill="#FDECEC"/>
+    <g class="icon" stroke="#D9534F"><rect x="1159" y="646" width="18" height="13" rx="3"/><path d="M1162 646 V641 A6 6 0 0 1 1174 641 V646"/></g>
+    <text class="h" x="88" y="694">Sensitivity labels</text>
+    <text class="body" x="88" y="722">index Purview-labelled documents and enforce label permissions at query time</text>
+  </g>
 </svg>

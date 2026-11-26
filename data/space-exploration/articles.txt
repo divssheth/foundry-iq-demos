@@ -1,6 +1,6 @@
 # Curated English Wikipedia article titles for the space exploration corpus.
 # One title per line; blank lines and lines starting with '#' are ignored.
-# Titles that no longer resolve are skipped (with a warning) by 00-setup/prepare-space-dataset.ipynb.
+# Titles that no longer resolve are skipped (with a warning) by advanced-retrieval/prepare-dataset.ipynb.
 
 # --- Space Race and early spaceflight ---
 Space Race
