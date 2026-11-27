@@ -28,13 +28,13 @@ This track deliberately combines two *unrelated* sources, NASA Earth at Night (i
 | Order | Notebook | What it covers |
 |---|---|---|
 | 1 | [prepare-dataset.ipynb](advanced-retrieval/prepare-dataset.ipynb) | **Run once first.** Fetch ~230 Wikipedia articles, upload to Blob Storage, build an indexer + skillset pipeline that chunks and embeds server-side |
-| 2 | [microsoft-retriever-1.ipynb](advanced-retrieval/microsoft-retriever-1.ipynb) | Direct agentic search, a Retriever 1-only knowledge base, `auto` reasoning effort, side-by-side comparison |
-| 3 | [topic-graph.ipynb](advanced-retrieval/topic-graph.ipynb) | Why and how topic graphs work; build with the Foundry IQ skills plugin (**manual step in GitHub Copilot CLI**); `none` vs `balanced` vs `diverse` |
-| 4 | [entity-graph.ipynb](advanced-retrieval/entity-graph.ipynb) | Why and how entity graphs work; ontology design, graph-enabled Blob knowledge source with ingestion cache, ontology v1 → v2, GQL and knowledge base queries |
+| 2 | [microsoft-retriever-1.ipynb](advanced-retrieval/microsoft-retriever-1.ipynb) | **Complete answers to multi-part questions** without an external planning model: a fact-checklist scoreboard of hybrid search vs Retriever 1 vs `auto` vs `medium`, with latency |
+| 3 | [topic-graph.ipynb](advanced-retrieval/topic-graph.ipynb) | **Broader evidence for broad questions**: the same question with `none` / `balanced` / `diverse`, side by side, scored and written up as answers. Built with the Foundry IQ skills plugin (**manual step in GitHub Copilot CLI**) |
+| 4 | [entity-graph.ipynb](advanced-retrieval/entity-graph.ipynb) | **Answers that join facts across documents**: plain RAG vs entity graph side by side; ontology design, graph-enabled Blob knowledge source with ingestion cache, ontology v1 → v2, GQL |
 
 > ### ⚠️ To do before you run this track
 > 1. **Run [prepare-dataset.ipynb](advanced-retrieval/prepare-dataset.ipynb) once.** Every other notebook in this track reads the `space-exploration` index it creates.
-> 2. **For [topic-graph.ipynb](advanced-retrieval/topic-graph.ipynb), install GitHub Copilot CLI and the Foundry IQ skills plugin first.** Step 4 of that notebook isn't a code cell: you build the topic graph by pasting two prompts into Copilot CLI and approving each plan. Steps 5–6 only produce results after that. The notebook walks you through it with a checklist.
+> 2. **For [topic-graph.ipynb](advanced-retrieval/topic-graph.ipynb), install GitHub Copilot CLI and the Foundry IQ skills plugin first.** Step 3 of that notebook isn't a code cell: you build the topic graph by pasting two prompts into Copilot CLI and approving each plan. Step 4 (the comparison) only produces results after that. The notebook walks you through it with a checklist.
 > 3. **On WSL**, make sure `node`, `npm` and `az` are the *Linux* installs (`which node npm az` must not show `/mnt/c/...`) and install `libicu-dev`. Otherwise Copilot CLI or the plugin's Azure MCP server won't start. See [the guide](docs/foundry-iq-skills-guide.md#troubleshooting).
 
 All four notebooks share one relationship-rich Wikipedia corpus on **space exploration**, so you can ask the *same* questions with plain search, Retriever 1, a topic graph and an entity graph and compare. It has many **themes** (Space Race, Apollo, space stations, Mars, telescopes, commercial spaceflight) for topic graphs, and many **relationships** (astronaut → mission → launch site → country) for entity graphs. After `prepare-dataset`, notebooks 2–4 can be run in any order.
@@ -96,7 +96,7 @@ The tables below cover the **Getting started** and **Advanced retrieval** tracks
    ```bash
    az login
    ```
-5. **Run the notebooks** track by track, in the order listed above. In **Advanced retrieval**, run `prepare-dataset` once before the other notebooks, and complete the manual Copilot CLI step in `topic-graph` (Step 4) before its Steps 5–6.
+5. **Run the notebooks** track by track, in the order listed above. In **Advanced retrieval**, run `prepare-dataset` once before the other notebooks, and complete the manual Copilot CLI step in `topic-graph` (Step 3) before its Step 4.
 
 ## API versions
 
